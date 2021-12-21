@@ -1,0 +1,35 @@
+Ship Santa Maria goes to the dock ¹1
+Ship Black Pearl goes to the dock ¹2
+Ship Bloody Ann goes to the dock ¹3
+Ship Flying Dutch goes to the dock ¹4
+Ship Cruella goes to the dock ¹5
+Ship Lodochka s blatnoy pohodochkoy goes to the raid deque.
+Ship Titanic goes to the raid deque.
+Ship Big Jim goes to the raid deque.
+Ship Lodochka s blatnoy pohodochkoy from the raid deque goes to just freed dock ¹3
+Ship Titanic from the raid deque goes to just freed dock ¹4
+Ship Jim Croce Ship goes to the raid deque.
+Ship Big Jim from the raid deque goes to just freed dock ¹3
+Ship Evergreen goes to the raid deque.
+Current raid deque is:
+Jim Croce Ship
+Evergreen
+Current state of docks is:
+Dock ¹1 : Santa Maria
+Dock ¹2 : Black Pearl
+Dock ¹3 : Big Jim
+Dock ¹4 : Titanic
+Dock ¹5 : Cruella
+Ship Jim Croce Ship from the raid deque goes to just freed dock ¹1
+Ship Evergreen from the raid deque goes to just freed dock ¹2
+Dock ¹3 gets free. As the raid deque is empty noone takes it.
+Ship My little boat goes to the dock ¹3
+Dock ¹1 gets free. As the raid deque is empty noone takes it.
+Ship Paper Ship goes to the dock ¹1
+Raid deque is empty at the moment.
+Current state of docks is:
+Dock ¹1 : Paper Ship
+Dock ¹2 : Evergreen
+Dock ¹3 : My little boat
+Dock ¹4 : Titanic
+Dock ¹5 : Cruella
