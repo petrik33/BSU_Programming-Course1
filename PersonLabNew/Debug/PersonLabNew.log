@@ -1,0 +1,8 @@
+﻿  PersonLabNew.cpp
+C:\Учебная\Прога\Практика\PersonLabNew\PersonLabNew\PersonLabNew.cpp(14,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Учебная\Прога\Практика\PersonLabNew\PersonLabNew\PersonLabNew.cpp(86,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Учебная\Прога\Практика\PersonLabNew\PersonLabNew\PersonLabNew.cpp(99,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Учебная\Прога\Практика\PersonLabNew\PersonLabNew\PersonLabNew.cpp(151,35): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Учебная\Прога\Практика\PersonLabNew\PersonLabNew\PersonLabNew.cpp(176,31): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Учебная\Прога\Практика\PersonLabNew\PersonLabNew\PersonLabNew.cpp(225,23): warning C4018: <: несоответствие типов со знаком и без знака
+  PersonLabNew.vcxproj -> C:\Учебная\Прога\Практика\PersonLabNew\Debug\PersonLabNew.exe
