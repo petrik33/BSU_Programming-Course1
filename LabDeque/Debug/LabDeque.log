@@ -1,0 +1,5 @@
+﻿  LabDeque.cpp
+C:\Учебная\Прога\Практика\LabDeque\LabDeque\LabDeque.cpp(30,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Учебная\Прога\Практика\LabDeque\LabDeque\LabDeque.cpp(51,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Учебная\Прога\Практика\LabDeque\LabDeque\LabDeque.cpp(73,23): warning C4018: <: несоответствие типов со знаком и без знака
+  LabDeque.vcxproj -> C:\Учебная\Прога\Практика\LabDeque\Debug\LabDeque.exe
