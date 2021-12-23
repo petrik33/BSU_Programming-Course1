@@ -337,7 +337,7 @@ ostream& DQueue<InfoType>::WriteToStreamFrontToRear(ostream& s)
 {
     if (size == 0)
     {
-        return nullptr;
+        return s;
     }
     for (unsigned i = 0; i < size; i++)
     {
@@ -351,7 +351,7 @@ ostream& DQueue<InfoType>::WriteToStreamRearToFront(ostream& s)
 {
     if (size == 0)
     {
-        return nullptr;
+        return s;
     }
     for (int i = size - 1; i >= 0; i--)
     {

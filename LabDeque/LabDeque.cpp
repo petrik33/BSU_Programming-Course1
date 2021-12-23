@@ -88,7 +88,7 @@ int main()
     DQueue <int>* qInt = new DQueue<int>;
     inputQueue(*qInt);
 
-    cout << "\nGreat. What would you like to do with the Dqueue now?\n";
+    cout << "\nGreat. What would you like to do with your integer Dqueue now?\n";
 
     string DQueueMenu = "1)Output from front to rear\n" \
                         "2)Output backwards\n" \
