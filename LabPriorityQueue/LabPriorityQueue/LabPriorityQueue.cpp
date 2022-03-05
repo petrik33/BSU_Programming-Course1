@@ -1,7 +1,6 @@
 ﻿#include "QueueP.h"
 #include <ctime>
 #include <random>
-using namespace std;
 
 void swap(QueueP* a1, QueueP* a2) {
 	QueueP* tmp = new QueueP(std::move(*a1));
@@ -91,7 +90,7 @@ int main(){
 			{
 			case 1://Insert
 				cout << "1)Randomly\n2)Manually\nChoose the insert mode: ";
-				int insertMode, priority;
+				int insertMode, priority,valuesNum;
 				cin >> insertMode;
 				while (insertMode < 1 || insertMode > 2)
 				{
@@ -101,7 +100,7 @@ int main(){
 				switch (insertMode)
 				{
 				case 1:
-					int valuesNum, randomMin, randomMax;
+					int randomMin, randomMax;
 					cout << "Enter the number of random values: ";
 					cin >> valuesNum;
 					while (valuesNum < 1)
@@ -130,21 +129,32 @@ int main(){
 					}
 					break;
 				case 2:
-					int value;
-					cout << "Enter value: ";
-					cin >> value;
-					cout << "Choose priority:\n";
-					for (int i = 0; i < PRIORITY_COUNT; i++)
-					{
-						cout << to_string(i + 1) << ")" << PRIORITY_NAMES[i] << "\n";
-					}
-					cin >> priority;
-					while (priority < 1 || priority > PRIORITY_COUNT)
+					cout << "Enter the number of values: ";
+					cin >> valuesNum;
+					while (valuesNum < 1)
 					{
 						cout << "Wrong input. Enter again: ";
-						cin >> priority;
+						cin >> valuesNum;
 					}
-					queueOperated->insert(value, ITEM_PRIORITY(priority - 1));
+					while (valuesNum-->0)
+					{
+						int value;
+						cout << "Enter value: ";
+						cin >> value;
+						cout << "Choose priority:\n";
+						for (int i = 0; i < PRIORITY_COUNT; i++)
+						{
+							cout << to_string(i + 1) << ")" << PRIORITY_NAMES[i] << "\n";
+						}
+						cin >> priority;
+						cout << "(" << PRIORITY_NAMES[priority - 1] << ")\n";
+						while (priority < 1 || priority > PRIORITY_COUNT)
+						{
+							cout << "Wrong input. Enter again: ";
+							cin >> priority;
+						}
+						queueOperated->insert(value, ITEM_PRIORITY(priority - 1));
+					}
 					break;
 				default:
 					break;
