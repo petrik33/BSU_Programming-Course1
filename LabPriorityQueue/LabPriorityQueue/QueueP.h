@@ -1,9 +1,9 @@
 #pragma once
 
-using namespace std;
 #include <exception>
 #include <string>
 #include <iostream>
+using namespace std;
 
 constexpr auto START_LINE = __LINE__;
 enum class ITEM_PRIORITY{
@@ -30,14 +30,12 @@ private:
 		}
 	};
 	QPItem* front;
-	QPItem* rears[PRIORITY_COUNT];
-	int sizeByPriority[PRIORITY_COUNT];
+	QPItem** rears;
+	int sizes[PRIORITY_COUNT];
 	void insert(QPItem*);
 	void erase();
 	void move(QPItem*& a, QPItem*& b);
-	/*void moveQP(QueueP&&) noexcept;*/
-	void browse(void visit(int), QPItem*);
-	void browse(void visit(int));
+	void move(QPItem**& rearsA, QPItem**& rearsB);
 public:
 	QueueP();
 	~QueueP();
@@ -59,5 +57,18 @@ public:
 	void clone(const QueueP&);
 
 	ostream& WriteToStream(ostream& s);
+};
+
+class QueueException : public exception {
+private:
+	string m_error;
+
+public:
+	QueueException(std::string error)
+		: m_error(error)
+	{
+	}
+
+	const char* what() const noexcept { return m_error.c_str(); }
 };
 

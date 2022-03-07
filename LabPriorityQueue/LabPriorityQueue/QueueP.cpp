@@ -3,10 +3,11 @@
 QueueP::QueueP()
 {
 	front = nullptr;
+	rears = new QPItem*[PRIORITY_COUNT];
 	for (int i = 0; i < PRIORITY_COUNT; i++)
 	{
 		rears[i] = nullptr;
-		sizeByPriority[i] = 0;
+		sizes[i] = 0;
 	}
 }
 
@@ -15,14 +16,14 @@ QueueP::~QueueP()
 	erase();
 }
 
-QueueP::QueueP(const QueueP& other)
+QueueP::QueueP(const QueueP& other) : QueueP()
 {
-	front = nullptr;
+	/*front = nullptr;
 	for (int i = 0; i < PRIORITY_COUNT; i++)
 	{
 		rears[i] = nullptr;
-		sizeByPriority[i] = 0;
-	}
+		sizes[i] = 0;
+	}*/
 	clone(other);
 }
 
@@ -43,11 +44,12 @@ QueueP& QueueP::operator=(const QueueP& other)
 QueueP::QueueP(QueueP&& other) noexcept
 {
 	move(front, other.front);
-	for (int i = 0; i < PRIORITY_COUNT; i++)
+	/*for (int i = 0; i < PRIORITY_COUNT; i++)
 	{
 		move(rears[i], other.rears[i]);
-		sizeByPriority[i] = other.sizeByPriority[i];
-	}
+		sizes[i] = other.sizes[i];
+	}*/
+	move(rears, other.rears);
 }
 
 QueueP& QueueP::operator=(QueueP&& other) noexcept
@@ -57,21 +59,20 @@ QueueP& QueueP::operator=(QueueP&& other) noexcept
 		return *this;
 	}
 	move(front, other.front);
-	for (int i = 0; i < PRIORITY_COUNT; i++)
+	/*for (int i = 0; i < PRIORITY_COUNT; i++)
 	{
 		move(rears[i], other.rears[i]);
-		sizeByPriority[i] = other.sizeByPriority[i];
-	}
+		sizes[i] = other.sizes[i];
+	}*/
+	move(rears, other.rears);
 	return *this;
 }
 
 int QueueP::getTotalSize() const
 {
 	int totalSize = 0;
-	for (int i = 0; i < PRIORITY_COUNT; i++)
-	{
-		totalSize += sizeByPriority[i];
-	}
+	for (auto& n : sizes)
+		totalSize += n;
 	return totalSize;
 }
 
@@ -89,42 +90,29 @@ void QueueP::move(QPItem*& a, QPItem*& b)
 	b = nullptr;
 }
 
-//void QueueP::moveQP(QueueP&& other) noexcept
-//{
-//	
-//}
-
-void QueueP::browse(void visit(int), QPItem* p)
+void QueueP::move(QPItem**& a, QPItem**& b)
 {
-	if (p != nullptr)
-	{
-		visit(p->value);
-		browse(visit, p->next);
-	}
-}
-
-void QueueP::browse(void visit(int))
-{
-	browse(visit, front);
+	a = b;
+	b = nullptr;
 }
 
 bool QueueP::pop()
 {
-	if (getTotalSize() > 0)
+	if (getTotalSize() == 0)
+	{
+		return false;
+	}
+	else
 	{
 		QPItem* _tmp = front;
 		front = front->next;
-		sizeByPriority[int(_tmp->priority)]--;
+		sizes[int(_tmp->priority)]--;
 		if (rears[int(_tmp->priority)] == _tmp)
 		{
 			rears[int(_tmp->priority)] = nullptr;
 		}
 		delete _tmp;
 		return true;
-	}
-	else
-	{
-		return false;
 	}
 }
 
@@ -140,7 +128,7 @@ bool QueueP::empty() const
 
 int QueueP::getPrioritySize(ITEM_PRIORITY _priority) const
 {
-	return sizeByPriority[int(_priority)];
+	return sizes[int(_priority)];
 }
 
 int QueueP::getFrontValue() const
@@ -149,10 +137,7 @@ int QueueP::getFrontValue() const
 	{
 		return front->value;
 	}
-	else
-	{
-		throw exception("There is no first element");
-	}
+	throw QueueException("There is no first element");
 }
 
 ITEM_PRIORITY QueueP::getFrontPriority() const
@@ -161,10 +146,7 @@ ITEM_PRIORITY QueueP::getFrontPriority() const
 	{
 		return front->priority;
 	}
-	else
-	{
-		throw exception("There is no first element");
-	}
+	throw QueueException("There is no first element");
 }
 
 //QPItem* QueueP::getFront() const
@@ -193,7 +175,7 @@ void QueueP::insert(int _value, ITEM_PRIORITY _priority)
 		}
 		else
 		{
-			if (getPrioritySize(_priority) != 0)
+			if (rears[int(_priority)] != nullptr)
 			{
 				//Inserting in-between with the existing rear
 				QPItem* _rear = rears[int(_priority)];
@@ -225,7 +207,7 @@ void QueueP::insert(int _value, ITEM_PRIORITY _priority)
 		
 	}
 	rears[int(_priority)] = _newItem;
-	sizeByPriority[int(_priority)]++;
+	sizes[int(_priority)]++;
 }
 
 void QueueP::insert(QPItem* _qpItem)
@@ -237,12 +219,13 @@ void QueueP::clone(const QueueP& other)
 {
 	if (other.getTotalSize() > 0)
 	{
-		QPItem* _tmp = other.front;
-		while (_tmp->next != nullptr)
-		{
-			insert(_tmp);
-			_tmp = _tmp->next;
-		}
+		return;
+	}
+	QPItem* _tmp = other.front;
+	while (_tmp->next != nullptr)
+	{
+		insert(_tmp);
+		_tmp = _tmp->next;
 	}
 }
 
